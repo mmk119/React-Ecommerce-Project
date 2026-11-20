@@ -12,6 +12,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
     wishlistCount: items.length,
     isInWishlist: (productId) => items.some((item) => item.id === productId),
     toggleWishlist: (product) => {
+      // Check the latest saved list by ID to add once or remove the existing entry.
       setItems((currentItems) => {
         if (currentItems.some((item) => item.id === product.id)) {
           return currentItems.filter((item) => item.id !== product.id)

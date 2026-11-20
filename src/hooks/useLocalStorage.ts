@@ -14,6 +14,7 @@ export function useLocalStorage<T>(
     }
   })
 
+  // Save committed state whenever the key or value changes.
   useEffect(() => {
     try {
       window.localStorage.setItem(key, JSON.stringify(value))

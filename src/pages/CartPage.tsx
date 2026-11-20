@@ -69,6 +69,7 @@ export default function CartPage() {
                 <button className="btn btn--muted" type="button" onClick={clearCart}>Clear cart</button>
               </div>
             </div>
+            {/* Delivery is free, so subtotal and total use the same value. */}
             <aside className="cart-page__summary" aria-labelledby="cart-summary-title">
               <h2 id="cart-summary-title">Order Summary</h2>
               <dl>

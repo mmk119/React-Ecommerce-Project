@@ -56,4 +56,33 @@ export const products: Product[] = [
   { id: 'kd-03', name: 'Cozy Kids Bed with Desk', category: 'kids', price: 640, oldPrice: 790, image: unsplash('1763478958800-3a2a6321f645', 600), description: 'Single bed with an attached study desk to save space.', featured: true },
   { id: 'kd-04', name: "Blossom Girls' Bedroom Set", category: 'kids', price: 920, image: unsplash('1697162103256-dad37889d979', 600), description: 'Soft pink bedroom set with a white bed and dresser.' },
   { id: 'kd-05', name: 'Explorer Twin Bed', category: 'kids', price: 410, image: unsplash('1771862956412-6ce9a725eb22', 600), description: 'Sturdy twin bed with under-bed drawers for toys.' },
+
+  // AIHOM product photos and listed prices for the demo catalog.
+  {
+    id: 'aihom-roxy-coffee-table',
+    name: 'Roxy Coffee Table',
+    category: 'living-room',
+    price: 151,
+    oldPrice: 189,
+    image: 'https://aihom.com.lb/image/cache/catalog/products/a%20white%20coffee%20tables/roxy-1600x900.jpg.webp',
+    description: 'White coffee table with an 80 cm by 80 cm top and a height of 43 cm.',
+  },
+  {
+    id: 'aihom-talia-coffee-table',
+    name: 'Talia Coffee Table',
+    category: 'living-room',
+    price: 245,
+    oldPrice: 306,
+    image: 'https://aihom.com.lb/image/cache/catalog/products/cofee-tables/TALIA-COFFEE-TABLE-1600x900.jpg.webp',
+    description: 'Contemporary brown coffee table from the Talia living room collection.',
+  },
+  {
+    id: 'aihom-vista-coffee-table',
+    name: 'Vista Coffee Table',
+    category: 'living-room',
+    price: 94,
+    oldPrice: 125,
+    image: 'https://aihom.com.lb/image/cache/catalog/products/a%20white%20coffee%20tables/vista-1600x900.jpg.webp',
+    description: 'Walnut-finish coffee table with raised legs for easy cleaning underneath.',
+  },
 ]

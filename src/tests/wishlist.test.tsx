@@ -17,6 +17,7 @@ function renderWishlist() {
 }
 
 describe('Wishlist', () => {
+  // Clear persisted state so each test starts with an empty store.
   beforeEach(() => localStorage.clear())
 
   it('toggles one saved copy and removes it on the second toggle', async () => {
@@ -33,6 +34,7 @@ describe('Wishlist', () => {
     const user = userEvent.setup()
     const { unmount } = renderWishlist()
     await user.click(screen.getByRole('button', { name: `Add ${product.name} to wishlist` }))
+    // Remounting the providers simulates restoring state after a refresh.
     unmount()
 
     renderWishlist()

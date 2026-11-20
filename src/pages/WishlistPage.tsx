@@ -51,6 +51,7 @@ export default function WishlistPage() {
                     className="btn btn--dark product-card__cart"
                     type="button"
                     onClick={() => {
+                      // Update both providers so their header badges reflect the move.
                       addToCart(product)
                       removeFromWishlist(product.id)
                     }}
