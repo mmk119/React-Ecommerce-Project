@@ -8,7 +8,7 @@ import { renderWithProviders } from './test-utils'
 describe('App routing', () => {
   it('renders the home page', () => {
     renderWithProviders(<App />, '/')
-    expect(screen.getByRole('heading', { name: 'Home' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Shop by Category' })).toBeInTheDocument()
   })
 
   it('renders the not-found page for unknown routes', () => {
