@@ -1,30 +1,47 @@
-import type { Product } from '../types'
+import type { Category, Product } from '../types'
+
+export type SortOption = 'default' | 'price-asc' | 'price-desc'
 
 export interface ProductFilters {
-  category?: Product['category']
   search: string
-  minPrice?: number
-  maxPrice?: number
-  saleOnly: boolean
-  sort: '' | 'price-asc' | 'price-desc'
+  category: Category | 'all'
+  minPrice: number | null
+  maxPrice: number | null
+  sort: SortOption
 }
 
-export function filterProducts(products: Product[], filters: ProductFilters): Product[] {
-  const terms = filters.search.toLowerCase().split(/\s+/).filter(Boolean)
+export const defaultFilters: ProductFilters = {
+  search: '',
+  category: 'all',
+  minPrice: null,
+  maxPrice: null,
+  sort: 'default',
+}
 
-  const matches = products.filter((product) => {
-    const searchableText = `${product.name} ${product.description}`.toLowerCase()
+export function filterProducts(list: Product[], filters: ProductFilters): Product[] {
+  const searchTerm = filters.search.trim().toLowerCase()
 
-    return (
-      (!filters.category || product.category === filters.category) &&
-      terms.every((term) => searchableText.includes(term)) &&
-      product.price >= (filters.minPrice ?? 0) &&
-      product.price <= (filters.maxPrice ?? Infinity) &&
-      (!filters.saleOnly || (product.oldPrice ?? 0) > product.price)
-    )
+  // Each condition is optional, so one pass can combine every active filter.
+  const matches = list.filter((product) => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm)
+    const matchesCategory =
+      filters.category === 'all' || product.category === filters.category
+    const matchesMinimum =
+      filters.minPrice === null || product.price >= filters.minPrice
+    const matchesMaximum =
+      filters.maxPrice === null || product.price <= filters.maxPrice
+
+    return matchesSearch && matchesCategory && matchesMinimum && matchesMaximum
   })
 
-  if (filters.sort === 'price-asc') matches.sort((a, b) => a.price - b.price)
-  if (filters.sort === 'price-desc') matches.sort((a, b) => b.price - a.price)
-  return matches
+  // Sort a copy so the shared product catalogue always keeps its original order.
+  const sortedProducts = [...matches]
+  if (filters.sort === 'price-asc') {
+    sortedProducts.sort((first, second) => first.price - second.price)
+  }
+  if (filters.sort === 'price-desc') {
+    sortedProducts.sort((first, second) => second.price - first.price)
+  }
+
+  return sortedProducts
 }
