@@ -145,12 +145,14 @@
   text-align: center;
 }
 
+/* Stack the summary below the items when the two columns need more room. */
 @media (max-width: 900px) {
   .cart-page__layout {
     grid-template-columns: minmax(0, 1fr);
   }
 }
 
+/* Give product details their own row on narrow screens. */
 @media (max-width: 560px) {
   .cart-page__item {
     grid-template-columns: minmax(0, 1fr) auto auto;

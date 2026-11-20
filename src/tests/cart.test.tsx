@@ -28,6 +28,7 @@ function expectSummary(quantity: number) {
 }
 
 describe('Shopping cart', () => {
+  // Clear persisted state so each test starts with an empty store.
   beforeEach(() => localStorage.clear())
 
   it('shows an added product with quantity one and its subtotal', async () => {
@@ -71,6 +72,7 @@ describe('Shopping cart', () => {
     const { user, addButton, unmount } = renderCart()
     await user.click(addButton)
     await user.click(addButton)
+    // Remounting the providers simulates restoring state after a refresh.
     unmount()
 
     renderCart()

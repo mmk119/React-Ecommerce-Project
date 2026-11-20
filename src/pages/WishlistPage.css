@@ -3,6 +3,7 @@
   margin-bottom: 28px;
 }
 
+/* Fit as many cards as the viewport allows, down to one column. */
 .wishlist-page__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));

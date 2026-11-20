@@ -13,6 +13,7 @@ type CartAction =
 function cartReducer(items: CartItem[], action: CartAction): CartItem[] {
   switch (action.type) {
     case 'ADD':
+      // A product ID gets one cart row, even when it is added multiple times.
       if (items.some(({ product }) => product.id === action.product.id)) {
         return cartReducer(items, { type: 'INCREASE', productId: action.product.id })
       }
@@ -34,10 +35,12 @@ function cartReducer(items: CartItem[], action: CartAction): CartItem[] {
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useLocalStorage<CartItem[]>('darliving-cart', [])
 
+  // Apply queued actions to the latest state, even when React batches updates.
   function dispatch(action: CartAction) {
     setItems((currentItems) => cartReducer(currentItems, action))
   }
 
+  // Derive the header count and subtotal from items so they stay in sync.
   const value: CartContextValue = {
     items,
     cartCount: items.reduce((count, item) => count + item.quantity, 0),

@@ -348,53 +348,10 @@
   margin-bottom: 18px;
 }
 
-/* ---------- Product tabs ---------- */
-.tabs {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 36px;
-}
-
-.tabs__btn {
-  position: relative;
-  background: none;
-  border: none;
-  border-bottom: 1px solid var(--color-accent);
-  padding: 10px 16px;
-  font-family: var(--font-heading);
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  color: var(--color-text);
-}
-
-.tabs__btn--active {
-  color: var(--color-accent-dark);
-  border-bottom-width: 2px;
-}
-
-/* Small triangle under the active tab */
-.tabs__btn--active::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -9px;
-  transform: translateX(-50%);
-  border: 8px solid transparent;
-  border-top-color: var(--color-accent);
-  border-bottom: 0;
-}
-
 .product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-}
-
-.product-tabs__more {
-  text-align: center;
-  margin-top: 40px;
 }
 
 /* ---------- Stats ---------- */
