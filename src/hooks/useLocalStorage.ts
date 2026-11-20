@@ -1,5 +1,26 @@
-// TODO: custom hook that keeps a piece of state in sync with localStorage.
-// Used by CartContext and WishlistContext so data survives a page refresh.
-// Tip: read the saved value in the useState initializer (not in a useEffect),
-// otherwise the empty initial state overwrites the saved data on refresh.
-export {}
+import { useEffect, useState, type Dispatch, type SetStateAction } from 'react'
+
+export function useLocalStorage<T>(
+  key: string,
+  initialValue: T,
+): [T, Dispatch<SetStateAction<T>>] {
+  // Load the saved value before the first render so the initial save preserves it.
+  const [value, setValue] = useState<T>(() => {
+    try {
+      const savedValue = window.localStorage.getItem(key)
+      return savedValue === null ? initialValue : (JSON.parse(savedValue) as T)
+    } catch {
+      return initialValue
+    }
+  })
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(key, JSON.stringify(value))
+    } catch {
+      // Keep the current session usable when storage is blocked or full.
+    }
+  }, [key, value])
+
+  return [value, setValue]
+}

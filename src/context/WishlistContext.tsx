@@ -1,18 +1,29 @@
 import { createContext, useContext, type ReactNode } from 'react'
-import type { WishlistContextValue } from '../types'
+import { useLocalStorage } from '../hooks/useLocalStorage'
+import type { Product, WishlistContextValue } from '../types'
 
 const WishlistContext = createContext<WishlistContextValue | null>(null)
 
-// TODO: implement with useReducer/useState + useLocalStorage (no duplicates).
-// Placeholder values for now so the app runs while the wishlist is being built.
 export function WishlistProvider({ children }: { children: ReactNode }) {
+  const [items, setItems] = useLocalStorage<Product[]>('darliving-wishlist', [])
+
   const value: WishlistContextValue = {
-    items: [],
-    wishlistCount: 0,
-    isInWishlist: () => false,
-    toggleWishlist: () => {},
-    removeFromWishlist: () => {},
+    items,
+    wishlistCount: items.length,
+    isInWishlist: (productId) => items.some((item) => item.id === productId),
+    toggleWishlist: (product) => {
+      setItems((currentItems) => {
+        if (currentItems.some((item) => item.id === product.id)) {
+          return currentItems.filter((item) => item.id !== product.id)
+        }
+        return [...currentItems, product]
+      })
+    },
+    removeFromWishlist: (productId) => {
+      setItems((currentItems) => currentItems.filter((item) => item.id !== productId))
+    },
   }
+
   return <WishlistContext.Provider value={value}>{children}</WishlistContext.Provider>
 }
 
