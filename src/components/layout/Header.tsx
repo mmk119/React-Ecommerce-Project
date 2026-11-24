@@ -28,9 +28,12 @@ export default function Header() {
   // Transparent only at the top of the home page, over the hero image
   const transparent = pathname === '/' && !scrolled && !menuOpen && !searchOpen
 
+  // Called by every header link: closes the menus and starts at the top of the page
+  // (needed when the link points to the page that is already open)
   function closeMenus() {
     setMenuOpen(false)
     setSearchOpen(false)
+    window.scrollTo({ top: 0 })
   }
 
   function handleSearch(event: FormEvent) {
