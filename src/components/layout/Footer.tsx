@@ -4,6 +4,10 @@ import { categories } from '../../data/products'
 import { STORE_NAME } from '../../data/site'
 import './Footer.css'
 
+// Clicking a link to the page you are already on does not trigger a new navigation,
+// so scroll up here too; otherwise the user stays at the footer and sees no change.
+const scrollToTop = () => window.scrollTo({ top: 0 })
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -13,7 +17,7 @@ export default function Footer() {
           <ul>
             {categories.map((category) => (
               <li key={category.id}>
-                <Link to={`/products?category=${category.id}`}>{category.label}</Link>
+                <Link onClick={scrollToTop} to={`/products?category=${category.id}`}>{category.label}</Link>
               </li>
             ))}
           </ul>
@@ -23,16 +27,16 @@ export default function Footer() {
           <h3>My Shopping</h3>
           <ul>
             <li>
-              <Link to="/products">All Products</Link>
+              <Link onClick={scrollToTop} to="/products">All Products</Link>
             </li>
             <li>
-              <Link to="/wishlist">Wishlist</Link>
+              <Link onClick={scrollToTop} to="/wishlist">Wishlist</Link>
             </li>
             <li>
-              <Link to="/cart">Shopping Cart</Link>
+              <Link onClick={scrollToTop} to="/cart">Shopping Cart</Link>
             </li>
             <li>
-              <Link to="/checkout">Checkout</Link>
+              <Link onClick={scrollToTop} to="/checkout">Checkout</Link>
             </li>
           </ul>
         </div>
