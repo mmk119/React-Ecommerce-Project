@@ -44,5 +44,10 @@ lerna-debug.log*
 Thumbs.db
 desktop.ini
 
+# Private team notes (not part of the submission)
+PROJECT_STATUS.docx
+MY_PART_EXPLAINED.pdf
+~$*.docx
+
 # Claude Code local settings
 .claude/settings.local.json

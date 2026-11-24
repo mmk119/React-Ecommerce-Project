@@ -1,0 +1,41 @@
+.wishlist-page__count {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+/* Fit as many cards as the viewport allows, down to one column. */
+.wishlist-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 20px;
+}
+
+.wishlist-page__grid .product-card {
+  width: 100%;
+  max-width: 320px;
+  justify-self: center;
+  border: 1px solid var(--color-border);
+}
+
+.wishlist-page__grid .product-card__price {
+  margin-bottom: 8px;
+}
+
+.wishlist-page__grid .product-card__wish:hover {
+  color: var(--color-sale);
+}
+
+.wishlist-page__empty {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding: 40px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  text-align: center;
+}
+
+.wishlist-page__empty h2 {
+  font-size: 1.25rem;
+}

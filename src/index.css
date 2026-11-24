@@ -1,13 +1,37 @@
-/* Global styles: brand colors and fonts go here once the design is decided */
+/* Global styles and design tokens */
 :root {
+  --color-dark: #343434; /* header, footer */
+  --color-accent: #ffc428; /* yellow buttons, active tabs */
+  --color-accent-dark: #f5b300;
+  --color-sale: #ef562d; /* sale badges and ribbons */
+  --color-green: #0c342d; /* stats band */
+  --color-info: #188bba; /* article date badges */
+  --color-heading: #2c2e35;
+  --color-text: #697278;
+  --color-muted: #8d93a5;
   --color-bg: #ffffff;
-  --color-text: #222222;
-  --color-accent: #333333;
-  --font-body: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --color-bg-soft: #f7f7f8;
+  --color-border: #e8eaee;
+
+  --font-heading: 'Poppins', system-ui, sans-serif;
+  --font-body: Verdana, Geneva, sans-serif;
+
+  --container: 1240px;
+  --radius: 6px;
+  --shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  --header-h: 130px;
 
   font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
   color: var(--color-text);
   background: var(--color-bg);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --header-h: 64px;
+  }
 }
 
 *,
@@ -20,31 +44,139 @@ body {
   margin: 0;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  color: var(--color-heading);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 img {
   max-width: 100%;
   display: block;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem;
+button {
+  font: inherit;
+  cursor: pointer;
 }
 
-.nav {
-  display: flex;
-  gap: 1rem;
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
 .main {
-  min-height: 70vh;
-  padding: 1rem;
+  min-height: 60vh;
 }
 
-.footer {
-  padding: 1rem;
+/* Pages other than Home sit below the fixed header */
+.main--offset {
+  padding-top: var(--header-h);
+}
+
+.section {
+  padding: 64px 0;
+}
+
+.section--soft {
+  background: var(--color-bg-soft);
+}
+
+.section-title {
   text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 32px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn--accent {
+  background: var(--color-accent);
+  color: var(--color-heading);
+}
+
+.btn--accent:hover {
+  background: var(--color-accent-dark);
+}
+
+.btn--muted {
+  background: var(--color-muted);
+  color: #fff;
+}
+
+.btn--muted:hover {
+  background: var(--color-heading);
+}
+
+.btn--dark {
+  background: var(--color-dark);
+  color: #fff;
+}
+
+.btn--dark:hover {
+  background: var(--color-accent);
+  color: var(--color-heading);
+}
+
+.back-to-top {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(52, 52, 52, 0.85);
+  color: #fff;
+}
+
+.back-to-top:hover {
+  background: var(--color-accent);
+  color: var(--color-heading);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
